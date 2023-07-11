@@ -19,5 +19,17 @@
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"> <img src="https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white"> <img src="https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=Apache%20Spark&logoColor=white"> <img src="https://img.shields.io/badge/Apache%20Zeppelin-D22128?style=for-the-badge&logo=Apache&logoColor=white"> 
 
+## Jeppelin Notebook
+
+
+![image](https://github.com/soobeen-byul/Library-Data-Analysis/assets/95599133/9e772c4d-eac8-4866-9905-04f57040e576)
+![image](https://github.com/soobeen-byul/Library-Data-Analysis/assets/95599133/1e54418a-e1e6-481e-aae5-2eea7cd53d1d)
+![image](https://github.com/soobeen-byul/Library-Data-Analysis/assets/95599133/d004a325-d51f-48be-a3fd-8d66b8ac9549)
+![image](https://github.com/soobeen-byul/Library-Data-Analysis/assets/95599133/7cfe84a6-c6bb-413f-8bf6-6051e3a68a97)
+![image](https://github.com/soobeen-byul/Library-Data-Analysis/assets/95599133/d5e0d11a-6976-40ec-898b-09a228e7e0d8)
+
+
+
+
 
 
