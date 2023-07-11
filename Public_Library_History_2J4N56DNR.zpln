@@ -1,0 +1,1830 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# 📚 Analysis of Public Library Data",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:33:05+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h1>📚 Analysis of Public Library Data</h1>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687748291072_224871120",
+      "id": "paragraph_1687748291072_224871120",
+      "dateCreated": "2023-06-26T11:58:11+0900",
+      "dateStarted": "2023-06-28T10:33:05+0900",
+      "dateFinished": "2023-06-28T10:33:10+0900",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:401"
+    },
+    {
+      "text": "%md \n\n### 원천 데이터 : 문화 빅데이터 플랫폼\n\n- 공공 도서관 대출정보 (2023.01 ~ 2023.02)\n- 도서관 정보 (2023.05)\n- 공공 도서관 소장도서 (2023.05)\n\n\n### 기술 스택\n\n<img src=\"https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=Apache%20Spark&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Zeppelin-D22128?style=for-the-badge&logo=Apache&logoColor=white\"> \n",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:34:26+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>원천 데이터 : 문화 빅데이터 플랫폼</h3>\n<ul>\n<li>공공 도서관 대출정보 (2023.01 ~ 2023.02)</li>\n<li>도서관 정보 (2023.05)</li>\n<li>공공 도서관 소장도서 (2023.05)</li>\n</ul>\n<h3>기술 스택</h3>\n<img src=\"https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Spark-E25A1C?style=for-the-badge&logo=Apache%20Spark&logoColor=white\"> \n<img src=\"https://img.shields.io/badge/Apache%20Zeppelin-D22128?style=for-the-badge&logo=Apache&logoColor=white\"> \n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687748311370_1636186470",
+      "id": "paragraph_1687748311370_1636186470",
+      "dateCreated": "2023-06-26T11:58:31+0900",
+      "dateStarted": "2023-06-28T10:34:26+0900",
+      "dateFinished": "2023-06-28T10:34:26+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:402"
+    },
+    {
+      "text": "%md\n\n### 데이터 파이프라인\n\n##### ✔ spark-step-1 : 필요 column만 추출한 base table 생성\n    - loan_base : 월별 데이터를 통합한 2023년 1월~5월 대여 정보 테이블 생성\n    - lbrry_base : 도서관 정보 (도서관명, 도서관 코드, 주소 등)\n    - book_base : 도서 정보 (일렼번호, 제목명, 저자명, ISBN 등)\n    \n##### ✔ spark-step-2 : 도서관-대여-도서 테이블 병합 후 partition table 생성\n    - partition : LBRRY_CD (도서관 코드)",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:33:44+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 276.056,
+              "optionOpen": false
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>데이터 파이프라인</h3>\n<h5>✔ spark-step-1 : 필요 column만 추출한 base table 생성</h5>\n<pre><code>- loan_base : 월별 데이터를 통합한 2023년 1월~5월 대여 정보 테이블 생성\n- lbrry_base : 도서관 정보 (도서관명, 도서관 코드, 주소 등)\n- book_base : 도서 정보 (일렼번호, 제목명, 저자명, ISBN 등)\n</code></pre>\n<h5>✔ spark-step-2 : 도서관-대여-도서 테이블 병합 후 partition table 생성</h5>\n<pre><code>- partition : LBRRY_CD (도서관 코드)\n</code></pre>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687749216281_2039287462",
+      "id": "paragraph_1687749216281_2039287462",
+      "dateCreated": "2023-06-26T12:13:36+0900",
+      "dateStarted": "2023-06-28T10:33:44+0900",
+      "dateFinished": "2023-06-28T10:33:44+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:403"
+    },
+    {
+      "text": "print(\"%html <h3>Data Pipeline Graph</h3>\")\nprint(\"<img src='https://user-images.githubusercontent.com/95599133/249003358-34bae4c3-e632-4820-bdd9-1be3a9f312ec.png' />\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-11T14:08:05+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<h3>Data Pipeline Graph</h3><img src='https://user-images.githubusercontent.com/95599133/249003358-34bae4c3-e632-4820-bdd9-1be3a9f312ec.png' />"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687760439129_920893991",
+      "id": "paragraph_1687760439129_920893991",
+      "dateCreated": "2023-06-26T15:20:39+0900",
+      "dateStarted": "2023-07-11T14:07:57+0900",
+      "dateFinished": "2023-07-11T14:07:57+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:404"
+    },
+    {
+      "title": "Baseline Code",
+      "text": "%spark.pyspark\n\nlbrry_base = spark.read.parquet(\"file:///home/sub/cong/Library-Data-Analysis/data/base/lbrry_base\")\nlbrry_base.createOrReplaceTempView('tb_lbrry')\n\nlbrry = spark.sql(\"\"\"SELECT LBRRY_CD, LBRRY_NM, ONE_AREA_NM, TWO_AREA_NM, LBRRY_ADDR FROM tb_lbrry\"\"\")\n\none_area = spark.sql(\"SELECT DISTINCT ONE_AREA_NM FROM tb_lbrry ORDER BY ONE_AREA_NM\")\none_area_nm = [value[0] for value in one_area.select('ONE_AREA_NM').collect()]\n\narea_dict=[]\nfor one in one_area_nm:\n    two_area = spark.sql(f\"SELECT DISTINCT TWO_AREA_NM, TWO_AREA_NM FROM tb_lbrry WHERE ONE_AREA_NM = '{one}' ORDER BY TWO_AREA_NM\")\n    area_dict.append(([value[0][0] for value in two_area.select('TWO_AREA_NM').collect()],one))\n\nprint('Load lbrry_info_tb')\n\ndf_partition= spark.read.parquet(\"file:///home/sub/cong/Library-Data-Analysis/data/partition/\")\ndf_partition.createOrReplaceTempView(\"tb_partition\")\n\nloan = spark.sql(\"\"\"SELECT CTRL_NO, TITLE_NM, ISBN_THIRTEEN_NO, LBRRY_CD, LBRRY_NM, BOOK_KEY_NO, MBER_SEQ_NO_VALUE, LON_YEAR, LON_MONTH, LON_DAY\n                        FROM tb_partition\"\"\")\n                        \n# df_loan.cached()\nloan.createOrReplaceTempView(\"tb_loan\")\n\nstats_loan = spark.sql(\"\"\"SELECT LBRRY_NM, LON_MONTH, LON_DAY, count(*) as CNT\n                        FROM tb_loan\n                        WHERE LON_YEAR = '2023'\n                        GROUP BY ROLLUP(LBRRY_NM,LON_MONTH, LON_DAY)\n                        ORDER BY LBRRY_NM, LON_MONTH, LON_DAY\n                        \"\"\")\n\nfrom pyspark.sql.functions import countDistinct\n\ncount=stats_loan.select(countDistinct(\"LBRRY_NM\")).collect()[0][0]\n                        \nstats_loan.cache()\nstats_loan.createOrReplaceTempView('tb_stats_loan')\n\nprint(f'Load stats_loan_tb - 도서관 {count} 장소 load')",
+      "user": "anonymous",
+      "dateUpdated": "2023-07-11T14:09:33+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Load lbrry_info_tb\nLoad stats_loan_tb - 도서관 1045 장소 load\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=0",
+              "$$hashKey": "object:7298"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=1",
+              "$$hashKey": "object:7299"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=2",
+              "$$hashKey": "object:7300"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=3",
+              "$$hashKey": "object:7301"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=4",
+              "$$hashKey": "object:7302"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=5",
+              "$$hashKey": "object:7303"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=6",
+              "$$hashKey": "object:7304"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=7",
+              "$$hashKey": "object:7305"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=8",
+              "$$hashKey": "object:7306"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=9",
+              "$$hashKey": "object:7307"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=10",
+              "$$hashKey": "object:7308"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=11",
+              "$$hashKey": "object:7309"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=12",
+              "$$hashKey": "object:7310"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=13",
+              "$$hashKey": "object:7311"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=14",
+              "$$hashKey": "object:7312"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=15",
+              "$$hashKey": "object:7313"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=16",
+              "$$hashKey": "object:7314"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=17",
+              "$$hashKey": "object:7315"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=18",
+              "$$hashKey": "object:7316"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=19",
+              "$$hashKey": "object:7317"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=20",
+              "$$hashKey": "object:7318"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=21",
+              "$$hashKey": "object:7319"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=22",
+              "$$hashKey": "object:7320"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=23",
+              "$$hashKey": "object:7321"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=24",
+              "$$hashKey": "object:7322"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=25",
+              "$$hashKey": "object:7323"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=26",
+              "$$hashKey": "object:7324"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=27",
+              "$$hashKey": "object:7325"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=28",
+              "$$hashKey": "object:7326"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=29",
+              "$$hashKey": "object:7327"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=30",
+              "$$hashKey": "object:7328"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=31",
+              "$$hashKey": "object:7329"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=32",
+              "$$hashKey": "object:7330"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=33",
+              "$$hashKey": "object:7331"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=34",
+              "$$hashKey": "object:7332"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=35",
+              "$$hashKey": "object:7333"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=36",
+              "$$hashKey": "object:7334"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=37",
+              "$$hashKey": "object:7335"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=38",
+              "$$hashKey": "object:7336"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=39",
+              "$$hashKey": "object:7337"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=40",
+              "$$hashKey": "object:7338"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687751313782_927986737",
+      "id": "paragraph_1687751313782_927986737",
+      "dateCreated": "2023-06-26T12:48:33+0900",
+      "dateStarted": "2023-07-11T14:09:30+0900",
+      "dateFinished": "2023-07-11T14:24:02+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:405"
+    },
+    {
+      "text": "%md\n## 🏢 전국 도서관 정보 조회",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-26T16:41:46+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>🏢 전국 도서관 정보 조회</h2>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687751298852_29184732",
+      "id": "paragraph_1687751298852_29184732",
+      "dateCreated": "2023-06-26T12:48:18+0900",
+      "dateStarted": "2023-06-26T16:41:46+0900",
+      "dateFinished": "2023-06-26T16:41:46+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:406"
+    },
+    {
+      "text": "%spark.pyspark\n\nsub_area = z.select('조회할 상위 지역명을 선택하세요',area_dict,'서울특별시')\n\nprint('%html <h5> 🔎 하위 지역 검색결과:</h5>')\nfor s in sub_area:\n    print(s, end =' ')\n    ",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T14:10:29+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "editorHide": true,
+        "runOnSelectionChange": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 65.6,
+              "optionOpen": false
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "area": [
+            "강남구",
+            "강동구",
+            "강북구",
+            "강서구",
+            "관악구",
+            "광진구",
+            "구로구",
+            "금천구",
+            "노원구",
+            "도봉구",
+            "동대문구",
+            "동작구",
+            "마포구",
+            "서대문구",
+            "서초구",
+            "성동구",
+            "성북구",
+            "송파구",
+            "양천구",
+            "영등포구",
+            "용산구",
+            "은평구",
+            "종로구",
+            "중구",
+            "중랑구"
+          ],
+          "상위 지역을 선택하세요": [
+            "강남구",
+            "강동구",
+            "강북구",
+            "강서구",
+            "관악구",
+            "광진구",
+            "구로구",
+            "금천구",
+            "노원구",
+            "도봉구",
+            "동대문구",
+            "동작구",
+            "마포구",
+            "서대문구",
+            "서초구",
+            "성동구",
+            "성북구",
+            "송파구",
+            "양천구",
+            "영등포구",
+            "용산구",
+            "은평구",
+            "종로구",
+            "중구",
+            "중랑구"
+          ],
+          "조회할 상위 지역을 선택하세요": [
+            "거제시",
+            "거창군",
+            "고성군",
+            "김해시",
+            "남해군",
+            "밀양시",
+            "사천시",
+            "산청군",
+            "양산시",
+            "의령군",
+            "진주시",
+            "창녕군",
+            "창원시",
+            "창원시 마산합포구",
+            "창원시 마산회원구",
+            "창원시 성산구",
+            "창원시 의창구",
+            "창원시 진해구",
+            "통영시",
+            "하동군",
+            "함안군",
+            "함양군",
+            "합천군"
+          ],
+          "조회할 상위 지역명을 선택하세요": [
+            "강남구",
+            "강동구",
+            "강북구",
+            "강서구",
+            "관악구",
+            "광진구",
+            "구로구",
+            "금천구",
+            "노원구",
+            "도봉구",
+            "동대문구",
+            "동작구",
+            "마포구",
+            "서대문구",
+            "서초구",
+            "성동구",
+            "성북구",
+            "송파구",
+            "양천구",
+            "영등포구",
+            "용산구",
+            "은평구",
+            "종로구",
+            "중구",
+            "중랑구"
+          ]
+        },
+        "forms": {
+          "조회할 상위 지역명을 선택하세요": {
+            "type": "Select",
+            "options": [
+              {
+                "value": [
+                  "강릉시",
+                  "고성군",
+                  "동해시",
+                  "삼척시",
+                  "속초시",
+                  "양구군",
+                  "양양군",
+                  "영월군",
+                  "원주시",
+                  "인제군",
+                  "정선군",
+                  "철원군",
+                  "춘천시",
+                  "태백시",
+                  "평창군",
+                  "홍천군",
+                  "화천군",
+                  "횡성군"
+                ],
+                "displayName": "강원도",
+                "$$hashKey": "object:691"
+              },
+              {
+                "value": [
+                  "가평군",
+                  "고양시 덕양구",
+                  "고양시 일산동구",
+                  "고양시 일산서구",
+                  "과천시",
+                  "광명시",
+                  "광주시",
+                  "구리시",
+                  "군포시",
+                  "김포시",
+                  "남양주시",
+                  "동두천시",
+                  "부천시",
+                  "성남시 분당구",
+                  "성남시 수정구",
+                  "성남시 중원구",
+                  "수원시 권선구",
+                  "수원시 영통구",
+                  "수원시 장안구",
+                  "수원시 팔달구",
+                  "시흥시",
+                  "안산시 단원구",
+                  "안산시 상록구",
+                  "안성시",
+                  "안양시 동안구",
+                  "안양시 만안구",
+                  "양주시",
+                  "양평군",
+                  "여주시",
+                  "연천군",
+                  "오산시",
+                  "용인시 기흥구",
+                  "용인시 수지구",
+                  "용인시 처인구",
+                  "의왕시",
+                  "의정부시",
+                  "이천시",
+                  "파주시",
+                  "평택시",
+                  "포천시",
+                  "하남시",
+                  "화성시"
+                ],
+                "displayName": "경기도",
+                "$$hashKey": "object:692"
+              },
+              {
+                "value": [
+                  "거제시",
+                  "거창군",
+                  "고성군",
+                  "김해시",
+                  "남해군",
+                  "밀양시",
+                  "사천시",
+                  "산청군",
+                  "양산시",
+                  "의령군",
+                  "진주시",
+                  "창녕군",
+                  "창원시",
+                  "창원시 마산합포구",
+                  "창원시 마산회원구",
+                  "창원시 성산구",
+                  "창원시 의창구",
+                  "창원시 진해구",
+                  "통영시",
+                  "하동군",
+                  "함안군",
+                  "함양군",
+                  "합천군"
+                ],
+                "displayName": "경상남도",
+                "$$hashKey": "object:693"
+              },
+              {
+                "value": [
+                  "경산시",
+                  "경주시",
+                  "고령군",
+                  "구미시",
+                  "군위군",
+                  "문경시",
+                  "봉화군",
+                  "상주시",
+                  "성주군",
+                  "안동시",
+                  "영덕군",
+                  "영양군",
+                  "영주시",
+                  "영천시",
+                  "예천군",
+                  "울릉군",
+                  "울진군",
+                  "의성군",
+                  "청도군",
+                  "청송군",
+                  "칠곡군",
+                  "포항시",
+                  "포항시 남구",
+                  "포항시 북구"
+                ],
+                "displayName": "경상북도",
+                "$$hashKey": "object:694"
+              },
+              {
+                "value": [
+                  "광산구",
+                  "남구",
+                  "동구",
+                  "북구",
+                  "서구"
+                ],
+                "displayName": "광주광역시",
+                "$$hashKey": "object:695"
+              },
+              {
+                "value": [
+                  "남구",
+                  "달서구",
+                  "달성군",
+                  "동구",
+                  "북구",
+                  "서구",
+                  "수성구",
+                  "중구"
+                ],
+                "displayName": "대구광역시",
+                "$$hashKey": "object:696"
+              },
+              {
+                "value": [
+                  "대덕구",
+                  "동구",
+                  "서구",
+                  "유성구",
+                  "중구"
+                ],
+                "displayName": "대전광역시",
+                "$$hashKey": "object:697"
+              },
+              {
+                "value": [
+                  "강서구",
+                  "금정구",
+                  "기장군",
+                  "남구",
+                  "동구",
+                  "동래구",
+                  "부산진구",
+                  "북구",
+                  "사상구",
+                  "사하구",
+                  "서구",
+                  "수영구",
+                  "연제구",
+                  "영도구",
+                  "중구",
+                  "해운대구"
+                ],
+                "displayName": "부산광역시",
+                "$$hashKey": "object:698"
+              },
+              {
+                "value": [
+                  "강남구",
+                  "강동구",
+                  "강북구",
+                  "강서구",
+                  "관악구",
+                  "광진구",
+                  "구로구",
+                  "금천구",
+                  "노원구",
+                  "도봉구",
+                  "동대문구",
+                  "동작구",
+                  "마포구",
+                  "서대문구",
+                  "서초구",
+                  "성동구",
+                  "성북구",
+                  "송파구",
+                  "양천구",
+                  "영등포구",
+                  "용산구",
+                  "은평구",
+                  "종로구",
+                  "중구",
+                  "중랑구"
+                ],
+                "displayName": "서울특별시",
+                "$$hashKey": "object:699"
+              },
+              {
+                "value": [
+                  "고운동",
+                  "다정동",
+                  "대평동",
+                  "도담동",
+                  "반곡동",
+                  "보람동",
+                  "새롬동",
+                  "세종시",
+                  "소담동",
+                  "아름동",
+                  "종촌동",
+                  "한솔동",
+                  "해밀동"
+                ],
+                "displayName": "세종특별자치시",
+                "$$hashKey": "object:700"
+              },
+              {
+                "value": [
+                  "남구",
+                  "동구",
+                  "북구",
+                  "울주군",
+                  "중구"
+                ],
+                "displayName": "울산광역시",
+                "$$hashKey": "object:701"
+              },
+              {
+                "value": [
+                  "계양구",
+                  "남동구",
+                  "동구",
+                  "미추홀구",
+                  "부평구",
+                  "서구",
+                  "연수구",
+                  "중구"
+                ],
+                "displayName": "인천광역시",
+                "$$hashKey": "object:702"
+              },
+              {
+                "value": [
+                  "강진군",
+                  "고흥군",
+                  "곡성군",
+                  "광양시",
+                  "구례군",
+                  "나주시",
+                  "담양군",
+                  "목포시",
+                  "무안군",
+                  "보성군",
+                  "순천시",
+                  "신안군",
+                  "여수시",
+                  "영광군",
+                  "영암군",
+                  "장성군",
+                  "장흥군",
+                  "진도군",
+                  "함평군",
+                  "해남군",
+                  "화순군"
+                ],
+                "displayName": "전라남도",
+                "$$hashKey": "object:703"
+              },
+              {
+                "value": [
+                  "고창군",
+                  "군산시",
+                  "김제시",
+                  "남원시",
+                  "무주군",
+                  "부안군",
+                  "순창군",
+                  "완주군",
+                  "익산시",
+                  "임실군",
+                  "장수군",
+                  "전주시 덕진구",
+                  "전주시 완산구",
+                  "정읍시",
+                  "진안군"
+                ],
+                "displayName": "전라북도",
+                "$$hashKey": "object:704"
+              },
+              {
+                "value": [
+                  "서귀포시",
+                  "제주시"
+                ],
+                "displayName": "제주특별자치도",
+                "$$hashKey": "object:705"
+              },
+              {
+                "value": [
+                  "공주시",
+                  "금산군",
+                  "논산시",
+                  "당진시",
+                  "보령시",
+                  "부여군",
+                  "서산시",
+                  "서천군",
+                  "아산시",
+                  "예산군",
+                  "천안시 동남구",
+                  "천안시 서북구",
+                  "청양군",
+                  "태안군",
+                  "홍성군"
+                ],
+                "displayName": "충청남도",
+                "$$hashKey": "object:706"
+              },
+              {
+                "value": [
+                  "괴산군",
+                  "단양군",
+                  "보은군",
+                  "영동군",
+                  "옥천군",
+                  "음성군",
+                  "제천시",
+                  "증평군",
+                  "진천군",
+                  "청주시 상당구",
+                  "청주시 서원구",
+                  "청주시 청원구",
+                  "청주시 흥덕구",
+                  "충주시"
+                ],
+                "displayName": "충청북도",
+                "$$hashKey": "object:707"
+              }
+            ],
+            "name": "조회할 상위 지역명을 선택하세요",
+            "displayName": "조회할 상위 지역명을 선택하세요",
+            "defaultValue": "서울특별시",
+            "hidden": false,
+            "$$hashKey": "object:658"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<h5> 🔎 하위 지역 검색결과:</h5>\n강남구 강동구 강북구 강서구 관악구 광진구 구로구 금천구 노원구 도봉구 동대문구 동작구 마포구 서대문구 서초구 성동구 성북구 송파구 양천구 영등포구 용산구 은평구 종로구 중구 중랑구 "
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687758120280_896852744",
+      "id": "paragraph_1687758120280_896852744",
+      "dateCreated": "2023-06-26T14:42:00+0900",
+      "dateStarted": "2023-06-28T14:09:52+0900",
+      "dateFinished": "2023-06-28T14:09:52+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:407"
+    },
+    {
+      "text": "%spark.pyspark\n\nsearch_area1 = z.input(\"상위 지역명을 입력하세요\",'서울특별시')\nsearch_area2 = z.input(\"하위 지역명을 입력하세요\",'서초구')\nsearch_area_add = z.input(\"동명 또는 도서관 이름을 입력하세요\",'반포')\n\nresult = spark.sql(f\"SELECT LBRRY_CD,LBRRY_TY_NM,LBRRY_NM,LBRRY_ADDR FROM tb_lbrry WHERE ONE_AREA_NM = '{search_area1}' and TWO_AREA_NM = '{search_area2}' and LBRRY_NM LIKE '%{search_area_add}%' \")\nresult.show()",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T14:24:55+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 6,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "상위 지역 명을 입력하세요": "서울특별시",
+          "하위 지역 명을 입력하세요": "서초구",
+          "상위 지역명을 입력하세요": "서울특별시",
+          "하위 지역명을 입력하세요": "서초구",
+          "동명 또는 도서관 이름을 입력하세요": "반포"
+        },
+        "forms": {
+          "상위 지역명을 입력하세요": {
+            "type": "TextBox",
+            "name": "상위 지역명을 입력하세요",
+            "displayName": "상위 지역명을 입력하세요",
+            "defaultValue": "서울특별시",
+            "hidden": false,
+            "$$hashKey": "object:708"
+          },
+          "하위 지역명을 입력하세요": {
+            "type": "TextBox",
+            "name": "하위 지역명을 입력하세요",
+            "displayName": "하위 지역명을 입력하세요",
+            "defaultValue": "서초구",
+            "hidden": false,
+            "$$hashKey": "object:709"
+          },
+          "동명 또는 도서관 이름을 입력하세요": {
+            "type": "TextBox",
+            "name": "동명 또는 도서관 이름을 입력하세요",
+            "displayName": "동명 또는 도서관 이름을 입력하세요",
+            "defaultValue": "반포",
+            "hidden": false,
+            "$$hashKey": "object:710"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+-----------+-------------------+---------------------------------+\n|LBRRY_CD|LBRRY_TY_NM|           LBRRY_NM|                       LBRRY_ADDR|\n+--------+-----------+-------------------+---------------------------------+\n|    4400|       공공| 서초구립반포도서관|    서울특별시 서초구 고무래로 34|\n|    4408|       작은|반포본동 작은도서관|    서울특별시 서초구 신반포로 10|\n|    4409|       작은| 반포1동 작은도서관|   서울특별시 서초구 사평대로 273|\n|    4410|       작은| 반포2동 작은도서관|서울특별시 서초구 신반포로15길 16|\n|    4411|       작은|  반포3동작은도서관|서울특별시 서초구 신반포로23길 78|\n|    4412|       작은| 반포4동 작은도서관|서울특별시 서초구 사평대로28길 70|\n+--------+-----------+-------------------+---------------------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=291",
+              "$$hashKey": "object:1380"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687759251061_751519968",
+      "id": "paragraph_1687759251061_751519968",
+      "dateCreated": "2023-06-26T15:00:51+0900",
+      "dateStarted": "2023-06-28T10:34:50+0900",
+      "dateFinished": "2023-06-28T10:34:51+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:408"
+    },
+    {
+      "text": "%md\n\n${search_lbr}",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T12:54:41+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<p>김나연</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687924190302_1402750163",
+      "id": "paragraph_1687924190302_1402750163",
+      "dateCreated": "2023-06-28T12:49:50+0900",
+      "dateStarted": "2023-06-28T12:54:41+0900",
+      "dateFinished": "2023-06-28T12:54:41+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:409"
+    },
+    {
+      "text": "%md\n\n## 🔎 도서관 별 대여내역 통계",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-26T16:42:03+0900",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>🔎 도서관 별 대여내역 통계</h2>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687749419961_1594604040",
+      "id": "paragraph_1687749419961_1594604040",
+      "dateCreated": "2023-06-26T12:16:59+0900",
+      "dateStarted": "2023-06-26T16:42:03+0900",
+      "dateFinished": "2023-06-26T16:42:03+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:410"
+    },
+    {
+      "text": "%spark.sql\n\nSELECT LON_MONTH, CNT FROM tb_stats_loan WHERE LBRRY_NM ='${search_lbrry_nm}' and LON_DAY IS NULL;\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T15:19:41+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 3,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 255.60000000000002,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "LON_MONTH0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "LON_DAY1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "desc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "CNT2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "LON_MONTH": "string",
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "stacked": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "style": "expand"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "forceY": false,
+                  "lineWithFocus": false,
+                  "isDateFormat": false
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "LON_MONTH",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "CNT",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 90.4,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "style": "stack"
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "forceY": false,
+                  "isDateFormat": false
+                }
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          },
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "도서관 명을 입력해주세요.": "서초구립반포도서관",
+          "search_lbrry_nm": "서초구립반포도서관",
+          "search_month": "01"
+        },
+        "forms": {
+          "search_lbrry_nm": {
+            "type": "TextBox",
+            "name": "search_lbrry_nm",
+            "displayName": "search_lbrry_nm",
+            "hidden": false,
+            "$$hashKey": "object:753"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "LON_MONTH\tCNT\nnull\t169811\n01\t35976\n02\t34033\n03\t32039\n04\t43550\n05\t24213\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=292",
+              "$$hashKey": "object:1506"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=293",
+              "$$hashKey": "object:1507"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=294",
+              "$$hashKey": "object:1508"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=295",
+              "$$hashKey": "object:1509"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=296",
+              "$$hashKey": "object:1510"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687761275384_1002977970",
+      "id": "paragraph_1687761275384_1002977970",
+      "dateCreated": "2023-06-26T15:34:35+0900",
+      "dateStarted": "2023-06-28T10:35:58+0900",
+      "dateFinished": "2023-06-28T10:35:58+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:411"
+    },
+    {
+      "text": "%spark.sql\nSELECT TO_DATE(CONCAT('2023',LON_MONTH,LON_DAY),'yyyyMMdd') as LON_DATE, CNT FROM tb_stats_loan WHERE LBRRY_NM ='${search_lbrry_nm}' and LON_MONTH IS NOT NULL and LON_DAY IS NOT NULL",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:36:00+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 9,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "LON_DATE": "string",
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "style": "stack"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "LON_DATE",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "CNT",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "LON_DATE": "string",
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {
+          "search_lbrry_nm": "서초구립반포도서관"
+        },
+        "forms": {
+          "search_lbrry_nm": {
+            "type": "TextBox",
+            "name": "search_lbrry_nm",
+            "displayName": "search_lbrry_nm",
+            "hidden": false,
+            "$$hashKey": "object:768"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "LON_DATE\tCNT\n2023-01-01\t6\n2023-01-02\t3\n2023-01-03\t1649\n2023-01-04\t1131\n2023-01-05\t1247\n2023-01-06\t1148\n2023-01-07\t1490\n2023-01-08\t1378\n2023-01-09\t7\n2023-01-10\t1658\n2023-01-11\t1309\n2023-01-12\t1072\n2023-01-13\t1119\n2023-01-14\t1364\n2023-01-15\t1285\n2023-01-16\t9\n2023-01-17\t1665\n2023-01-18\t1701\n2023-01-19\t1712\n2023-01-20\t1933\n2023-01-21\t2\n2023-01-25\t2780\n2023-01-26\t1501\n2023-01-27\t1892\n2023-01-28\t2683\n2023-01-29\t2734\n2023-01-30\t5\n2023-01-31\t1493\n2023-02-01\t1326\n2023-02-02\t1056\n2023-02-03\t1174\n2023-02-04\t1287\n2023-02-05\t1412\n2023-02-06\t15\n2023-02-07\t1282\n2023-02-08\t1221\n2023-02-09\t1159\n2023-02-10\t1139\n2023-02-11\t1248\n2023-02-12\t1297\n2023-02-13\t8\n2023-02-14\t1492\n2023-02-15\t1322\n2023-02-16\t1197\n2023-02-17\t1202\n2023-02-18\t1494\n2023-02-19\t1377\n2023-02-20\t1\n2023-02-21\t1830\n2023-02-22\t1807\n2023-02-23\t1304\n2023-02-24\t1676\n2023-02-25\t2245\n2023-02-26\t2086\n2023-02-27\t12\n2023-02-28\t1364\n2023-03-01\t9\n2023-03-02\t1047\n2023-03-03\t1153\n2023-03-04\t1663\n2023-03-05\t1512\n2023-03-06\t17\n2023-03-07\t1333\n2023-03-08\t1090\n2023-03-09\t1020\n2023-03-10\t984\n2023-03-11\t1474\n2023-03-12\t1416\n2023-03-13\t4\n2023-03-14\t1251\n2023-03-15\t1105\n2023-03-16\t805\n2023-03-17\t994\n2023-03-18\t1592\n2023-03-19\t1378\n2023-03-20\t17\n2023-03-21\t1323\n2023-03-22\t974\n2023-03-23\t984\n2023-03-24\t989\n2023-03-25\t1546\n2023-03-26\t1400\n2023-03-27\t4\n2023-03-28\t1338\n2023-03-29\t1752\n2023-03-30\t945\n2023-03-31\t920\n2023-04-01\t1180\n2023-04-02\t1494\n2023-04-03\t16\n2023-04-04\t1479\n2023-04-05\t961\n2023-04-06\t1003\n2023-04-07\t1172\n2023-04-08\t1645\n2023-04-09\t1492\n2023-04-10\t4\n2023-04-11\t1437\n2023-04-12\t1421\n2023-04-13\t1304\n2023-04-14\t1305\n2023-04-15\t1768\n2023-04-16\t1847\n2023-04-17\t14\n2023-04-18\t1988\n2023-04-19\t1794\n2023-04-20\t1502\n2023-04-21\t1714\n2023-04-22\t2186\n2023-04-23\t2297\n2023-04-24\t15\n2023-04-25\t2203\n2023-04-26\t2424\n2023-04-27\t2037\n2023-04-28\t1915\n2023-04-29\t2626\n2023-04-30\t1307\n2023-05-01\t6\n2023-05-02\t1322\n2023-05-03\t1018\n2023-05-04\t1156\n2023-05-05\t2\n2023-05-06\t1438\n2023-05-07\t1186\n2023-05-08\t10\n2023-05-09\t1398\n2023-05-10\t862\n2023-05-11\t946\n2023-05-12\t1015\n2023-05-13\t1244\n2023-05-14\t1395\n2023-05-15\t7\n2023-05-16\t1015\n2023-05-17\t764\n2023-05-18\t671\n2023-05-19\t814\n2023-05-20\t1381\n2023-05-21\t1214\n2023-05-22\t2\n2023-05-23\t1126\n2023-05-24\t959\n2023-05-25\t788\n2023-05-26\t864\n2023-05-27\t10\n2023-05-28\t1579\n2023-05-29\t21\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=297",
+              "$$hashKey": "object:1572"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=298",
+              "$$hashKey": "object:1573"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=299",
+              "$$hashKey": "object:1574"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=300",
+              "$$hashKey": "object:1575"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=301",
+              "$$hashKey": "object:1576"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687913871750_2042018556",
+      "id": "paragraph_1687913871750_2042018556",
+      "dateCreated": "2023-06-28T09:57:51+0900",
+      "dateStarted": "2023-06-28T10:36:00+0900",
+      "dateFinished": "2023-06-28T10:36:01+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:412"
+    },
+    {
+      "text": "%spark.sql\nSELECT TO_DATE(CONCAT('2023',LON_MONTH,LON_DAY),'yyyyMMdd') as LON_DATE, CNT FROM tb_stats_loan WHERE LBRRY_NM ='${search_lbrry_nm}' and LON_MONTH = '${search_month}' and LON_DAY IS NOT NULL; ",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:37:01+0900",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "LON_DATE": "string",
+                      "CNT": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "LON_DATE",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "CNT",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "LON_MONTH": "string",
+                      "LON_DAY": "string",
+                      "CNT": "string"
+                    },
+                    "updated": true
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {
+          "search_lbrry_nm": "서초구립반포도서관",
+          "search_month": "04"
+        },
+        "forms": {
+          "search_lbrry_nm": {
+            "type": "TextBox",
+            "name": "search_lbrry_nm",
+            "displayName": "search_lbrry_nm",
+            "hidden": false,
+            "$$hashKey": "object:783"
+          },
+          "search_month": {
+            "type": "TextBox",
+            "name": "search_month",
+            "displayName": "search_month",
+            "hidden": false,
+            "$$hashKey": "object:784"
+          }
+        }
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "LON_DATE\tCNT\n2023-04-01\t1180\n2023-04-02\t1494\n2023-04-03\t16\n2023-04-04\t1479\n2023-04-05\t961\n2023-04-06\t1003\n2023-04-07\t1172\n2023-04-08\t1645\n2023-04-09\t1492\n2023-04-10\t4\n2023-04-11\t1437\n2023-04-12\t1421\n2023-04-13\t1304\n2023-04-14\t1305\n2023-04-15\t1768\n2023-04-16\t1847\n2023-04-17\t14\n2023-04-18\t1988\n2023-04-19\t1794\n2023-04-20\t1502\n2023-04-21\t1714\n2023-04-22\t2186\n2023-04-23\t2297\n2023-04-24\t15\n2023-04-25\t2203\n2023-04-26\t2424\n2023-04-27\t2037\n2023-04-28\t1915\n2023-04-29\t2626\n2023-04-30\t1307\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=307",
+              "$$hashKey": "object:1638"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=308",
+              "$$hashKey": "object:1639"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=309",
+              "$$hashKey": "object:1640"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=310",
+              "$$hashKey": "object:1641"
+            },
+            {
+              "jobUrl": "http://172.27.143.121:4040/jobs/job?id=311",
+              "$$hashKey": "object:1642"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687768106511_317113045",
+      "id": "paragraph_1687768106511_317113045",
+      "dateCreated": "2023-06-26T17:28:26+0900",
+      "dateStarted": "2023-06-28T10:37:01+0900",
+      "dateFinished": "2023-06-28T10:37:02+0900",
+      "status": "FINISHED",
+      "$$hashKey": "object:413"
+    },
+    {
+      "text": "%spark.sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-06-28T10:36:32+0900",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1687916192917_850473129",
+      "id": "paragraph_1687916192917_850473129",
+      "dateCreated": "2023-06-28T10:36:32+0900",
+      "status": "READY",
+      "$$hashKey": "object:414"
+    }
+  ],
+  "name": "Public_Library_History",
+  "id": "2J4N56DNR",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.10.1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Public_Library_History"
+}
